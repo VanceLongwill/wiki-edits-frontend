@@ -7,3 +7,6 @@ function loadStories() {
 }
 
 configure(loadStories, module)
+
+
+//@TODO: generate prop table documentation via https://github.com/storybooks/storybook/tree/master/addons/info

@@ -1,7 +1,9 @@
 import * as React from 'react'
+import { Button } from 'antd'
 
-type Props = {
+interface Props {
   buttonText: string
 }
 
-export default (props: Props) => <button>{props.buttonText}</button>
+export default (props: Props) => 
+  <Button type="primary">{props.buttonText}</Button>
