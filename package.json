@@ -7,7 +7,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006 -c .storybook"
   },
   "keywords": [
     "Typescript",
@@ -26,7 +27,13 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@storybook/react": "^5.0.6",
+    "@types/node": "^11.13.4",
     "@types/react": "^16.8.13",
+    "@types/storybook__react": "^4.0.1",
+    "babel-loader": "^8.0.5",
+    "babel-preset-react-app": "^7.0.2",
     "fork-ts-checker-webpack-plugin": "^1.0.2",
     "typescript": "^3.4.3"
   }
