@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx tslint -c tslint.json './{pages,components}/*.tsx' --project .",
     "storybook": "start-storybook -p 6006 -c .storybook"
   },
   "keywords": [
@@ -45,6 +46,8 @@
     "babel-plugin-import": "^1.11.0",
     "babel-preset-react-app": "^7.0.2",
     "fork-ts-checker-webpack-plugin": "^1.0.2",
+    "tslint": "^5.15.0",
+    "tslint-config-standard": "^8.0.1",
     "typescript": "^3.4.3"
   }
 }
