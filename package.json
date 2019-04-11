@@ -10,6 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx tslint -c tslint.json './{pages,components}/*.ts{,x}' --project .",
     "lint:fix": "npm run lint -- --fix",
+    "lint:css": "npx stylelint './{pages,components}/*.ts{,x}'",
     "format": "npm run lint:fix && npx prettier --write '**/*.{t,j}s{,x}'",
     "storybook": "start-storybook -p 6006 -c .storybook",
     "tslint-check": "npx tslint-config-prettier-check ./tslint.json"
@@ -26,6 +27,7 @@
     ],
     "*.{t,j}s{,x}": [
       "npx tslint -c tslint.json",
+      "npx stylelint",
       "npx prettier --write",
       "git add"
     ]
@@ -68,6 +70,10 @@
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
     "prettier": "1.16.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.6.0",
     "tslint": "^5.15.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^8.0.1",
