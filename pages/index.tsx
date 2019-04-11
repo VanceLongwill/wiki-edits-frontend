@@ -1,11 +1,12 @@
 import Button from '../components/Button'
+import PageContainer from '../components/PageContainer'
 
 function App() {
   return (
-    <div>
+    <PageContainer>
       <div>Welcome to Next.js!</div>
       <Button buttonText="some button" />
-    </div>
+    </PageContainer>
   )
 }
 
