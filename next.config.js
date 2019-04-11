@@ -4,13 +4,14 @@ const withCSS = require('@zeit/next-css')
 
 // The below is a work-around caused by using babel-plugin-import to resolve the antd css files per component
 // https://github.com/zeit/next-plugins/issues/267#issuecomment-436454048
-if (typeof require !== "undefined") {
- require.extensions[".less"] = () => {};
- require.extensions[".css"] = (file) => {};
+if (typeof require !== 'undefined') {
+  require.extensions['.less'] = () => {}
+  require.extensions['.css'] = file => {}
 }
 
 module.exports = withTypescript(
-  withCSS({ // Although we'll use CSS-in-JS, we need a CSS loader for ant design components' styling
+  withCSS({
+    // Although we'll use CSS-in-JS, we need a CSS loader for ant design components' styling
     webpack(config, options) {
       // add custom webpack config here
 
@@ -19,6 +20,6 @@ module.exports = withTypescript(
         config.plugins.push(new ForkTsCheckerWebpackPlugin())
       }
       return config
-    }
+    },
   })
 )

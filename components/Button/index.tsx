@@ -5,5 +5,6 @@ interface Props {
   buttonText: string
 }
 
-export default (props: Props) => 
+export default (props: Props) => (
   <Button type="primary">{props.buttonText}</Button>
+)
