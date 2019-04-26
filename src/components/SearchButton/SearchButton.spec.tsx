@@ -1,15 +1,15 @@
 import { shallow } from 'enzyme'
 import * as React from 'react'
 
-import Button from './'
+import { SearchButton } from './SearchButton'
 
-describe('Button', () => {
+describe('SearchButton', () => {
   it('should render without error', () => {
-    const wrapper = shallow(<Button buttonText="something" />)
+    const wrapper = shallow(<SearchButton buttonText="something" />)
     expect(wrapper).toBeTruthy()
   })
   it('should match snapshot', () => {
-    const wrapper = shallow(<Button buttonText="something" />)
+    const wrapper = shallow(<SearchButton buttonText="something" />)
     expect(wrapper).toMatchSnapshot()
   })
 })

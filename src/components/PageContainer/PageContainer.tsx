@@ -6,12 +6,10 @@ const Wrapper = styled.section`
   background: pink;
 `
 
-interface Props {
+interface IPageContainerProps {
   children?: React.ReactNode
 }
 
-function PageContainer(props: Props) {
+export function PageContainer(props: IPageContainerProps) {
   return <Wrapper>{props.children}</Wrapper>
 }
-
-export default PageContainer
