@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`forecast actions action creators should match snapshot 1`] = `
+Object {
+  "payload": Object {
+    "city": "London",
+  },
+  "type": "FORECAST_FETCH",
+}
+`;
+
+exports[`forecast actions action creators should match snapshot 2`] = `
+Object {
+  "payload": Object {
+    "error": "some error",
+  },
+  "type": "FORECAST_FETCH_FAIL",
+}
+`;
+
+exports[`forecast actions action creators should match snapshot 3`] = `
+Object {
+  "payload": Object {
+    "result": Object {
+      "displayName": "something",
+    },
+  },
+  "type": "FORECAST_FETCH_SUCCESS",
+}
+`;

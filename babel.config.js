@@ -11,11 +11,6 @@ module.exports = api => {
   }
 
   if (isTest) {
-    config.presets = [
-      ['@babel/preset-env', { targets: { node: 'current' } }],
-      '@babel/preset-react',
-      '@babel/preset-typescript',
-    ]
     config.plugins = [['styled-components', { ssr: true }]]
   }
 

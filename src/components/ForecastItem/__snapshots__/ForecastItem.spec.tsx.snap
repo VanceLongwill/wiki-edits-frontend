@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForecastItem should match snapshot 1`] = `
+<Fragment>
+  <td>
+    London
+  </td>
+  <td
+    key="London-0-1008.68"
+  >
+    10°C
+  </td>
+  <td
+    key="London-1-1010.79"
+  >
+    8°C
+  </td>
+  <td
+    key="London-2-1011.44"
+  >
+    7°C
+  </td>
+  <td
+    key="London-3-1011.49"
+  >
+    7°C
+  </td>
+  <td
+    key="London-4-1012.52"
+  >
+    7°C
+  </td>
+  <td
+    key="London-5-1013.93"
+  >
+    10°C
+  </td>
+  <td
+    key="London-6-1014.62"
+  >
+    12°C
+  </td>
+  <td
+    key="London-7-1014.93"
+  >
+    13°C
+  </td>
+</Fragment>
+`;

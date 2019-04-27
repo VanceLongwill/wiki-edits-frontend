@@ -32,8 +32,8 @@ export function forecastReducer(
     case FORECAST_FETCH_SUCCESS:
       return {
         ...state,
-        loading: false,
         error: false,
+        loading: false,
         locations: [...state.locations, action.payload.result],
       }
 

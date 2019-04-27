@@ -19,8 +19,13 @@ interface ISearchState {
 }
 
 export class Search extends React.Component<ISearchProps, ISearchState> {
-  public readonly state: ISearchState = {
-    query: '',
+  public readonly state: ISearchState
+
+  constructor(props: ISearchProps) {
+    super(props)
+    this.state = {
+      query: '',
+    }
   }
 
   public handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

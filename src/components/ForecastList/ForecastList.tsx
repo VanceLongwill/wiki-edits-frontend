@@ -39,6 +39,7 @@ const ForecastRow = styled.tr`
     list-style: none;
     flex-grow: 1;
     white-space: nowrap;
+    text-align: center;
   }
   th:first-child,
   td:first-child {
@@ -51,7 +52,7 @@ export function convertUnixTimestamp(timestamp: number) {
   const date = new Date(timestamp * 1000)
   const hour = date.getHours()
   const formattedHour = hour < 10 ? `0${hour}` : hour
-  return `${formattedHour}:00 `
+  return `${formattedHour}:00`
 }
 
 export function ForecastList(props: IForecastListProps) {

@@ -33,6 +33,7 @@ export interface IListItem {
   weather: IWeatherItem[]
   clouds: IClouds
   wind: IWind
+  rain?: IRain
   sys: ISys
   dt_txt: string
 }
@@ -58,6 +59,9 @@ export interface IClouds {
 export interface IWind {
   speed: number
   deg: number
+}
+export interface IRain {
+  '3h': number
 }
 export interface ISys {
   pod: string
