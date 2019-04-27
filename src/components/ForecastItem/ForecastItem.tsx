@@ -1,40 +1,33 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { IForecast } from '../../types'
+
 interface IForecastItemProps {
-  city: string;
+  data: IForecast
 }
 
-export const ForecastItemContainer = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  list-style: none;
-`
-
-export const ForecastItemText = styled.li`
-  font-size: 14px;
+export const ForecastItemText = styled.td`
   text-align: center;
 `
 
+export function formatTemperature(temp: number) {
+  const roundedTemp = Math.floor(temp)
+  return `${roundedTemp}°C`
+}
+
 export function ForecastItem(props: IForecastItemProps) {
+  const { data } = props
   return (
-    <ForecastItemContainer>
-      <ForecastItemText>
-        {props}
-        London, UK
-      </ForecastItemText>
-      <ForecastItemText>
-        12C
-      </ForecastItemText>
-        16C
-      <ForecastItemText>
-        17C
-      </ForecastItemText>
-      <ForecastItemText>
-        14C
-      </ForecastItemText>
-    </ForecastItemContainer>
+    <>
+      <ForecastItemText>{data.displayName}</ForecastItemText>
+      {data.list.map((item, i) => {
+        return (
+          <ForecastItemText key={`${data.displayName}-${i}-${item.main.grnd_level}`}>
+            {formatTemperature(item.main.temp)}
+          </ForecastItemText>
+        )
+      })}
+    </>
   )
 }

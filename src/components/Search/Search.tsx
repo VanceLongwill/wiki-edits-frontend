@@ -4,12 +4,14 @@ import { Button, Input } from 'antd'
 import styled from 'styled-components'
 
 const SearchContainer = styled.div`
-  margin: 0 auto;
   padding: 10px;
+  width: 900px;
+  display: flex;
 `
 
 interface ISearchProps {
   handleSubmit: (query: string) => {}
+  loading: boolean
 }
 
 interface ISearchState {
@@ -21,23 +23,28 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
     query: '',
   }
 
-  public handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState(prevState => ({ ...prevState, query: e.target.value }))
+  public handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value
+    this.setState(prevState => ({ ...prevState, query }))
   }
 
-  public handleSearchButtonPress() {
+  public handleSearchButtonPress = () => {
     const { handleSubmit } = this.props
     const { query } = this.state
+    this.setState(prevState => ({ ...prevState, query: '' }))
     handleSubmit(query)
-    // this.setState(prevState => ({ ...prevState, query: "" }))
   }
 
   public render() {
     const { query } = this.state
+    const { loading } = this.props
     return (
       <SearchContainer>
         <Input type="text" value={query} onChange={this.handleChange} />
-        <Button type="primary" onClick={this.handleSearchButtonPress}>
+        <Button
+          disabled={loading}
+          type="primary"
+          onClick={this.handleSearchButtonPress}>
           Search
         </Button>
       </SearchContainer>

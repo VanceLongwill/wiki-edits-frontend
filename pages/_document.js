@@ -1,3 +1,4 @@
+// @TODO: migrate to typescript
 import Document from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
