@@ -2,7 +2,7 @@ const withTypescript = require('@zeit/next-typescript')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const withCSS = require('@zeit/next-css')
 
-const debug = process.env.NODE_ENV !== 'production'
+// const debug = process.env.NODE_ENV !== 'production'
 // The below is a work-around caused by using babel-plugin-import to resolve the antd css files per component
 // https://github.com/zeit/next-plugins/issues/267#issuecomment-436454048
 if (typeof require !== 'undefined') {
@@ -26,5 +26,5 @@ module.exports = {
       },
     })
   ),
-  assetPrefix: !debug ? '/Next-gh-page-example/' : ''
+  //  assetPrefix: !debug ? '/Next-gh-page-example/' : ''
 }

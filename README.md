@@ -1,10 +1,13 @@
 ### Weather App :sunny:
 
+### Live demo at [weather-app.vancelongwill.now.sh](https://weather-app.vancelongwill.now.sh)
+
 #### Features:
 
 ##### Stack :computer:
 
 - [Next.js](https://nextjs.org) Node/React framework supporting SSR (the first row in the ForecastList table is server-side rendered)
+- [Zeit now]() for serverless deployment
 - [React]() for a view library
 - [Antd]() design/ui library for high quality components (NB: [babel-plugin-import]() used to reduce bundle size by importing css as required)
 - [Styled-components]() CSS-in-JS solution for easily extending component based styles
