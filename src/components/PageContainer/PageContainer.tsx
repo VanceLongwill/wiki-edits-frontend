@@ -2,9 +2,23 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  padding: 4em;
+  margin: 50px auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 24px;
+  width: 900px;
   background: #fefefe;
-  margin: 0 auto;
+  * {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    text-align: center;
+  }
 `
 
 interface IPageContainerProps {

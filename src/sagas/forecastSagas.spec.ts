@@ -5,8 +5,8 @@ jest.mock('../utils/api', () => {
     getForecastByCity: jest.fn(() => {
       return Promise.resolve({
         data: {
-          cod: '200',
           city: { name: 'London' },
+          cod: '200',
           list: stub.forecast.locations,
         },
       })

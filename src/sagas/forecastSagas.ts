@@ -20,7 +20,7 @@ export function* handleFetchForecast(action: IForecastFetch) {
 
     yield put(
       fetchForecastSuccess({
-        displayName: data.city.name,
+        displayName: `${data.city.name}, ${data.city.country}`,
         list: filterForecastsNext24Hours(data.list),
       })
     )

@@ -7,7 +7,13 @@ import { convertUnixTimestamp, ForecastList } from './ForecastList'
 describe('ForecastList', () => {
   it('should match snapshot', () => {
     const component = shallow(
-      <ForecastList locations={stateSub.forecast.locations} />
+      <ForecastList loading={false} locations={stateSub.forecast.locations} />
+    )
+    expect(component).toMatchSnapshot()
+  })
+  it('should render an empty row skeleton while loading', () => {
+    const component = shallow(
+      <ForecastList loading={true} locations={stateSub.forecast.locations} />
     )
     expect(component).toMatchSnapshot()
   })

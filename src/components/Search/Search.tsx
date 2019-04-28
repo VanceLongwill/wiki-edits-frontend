@@ -1,12 +1,20 @@
 import * as React from 'react'
 
-import { Button, Input } from 'antd'
+import jsonp from 'jsonp'
+
+import { AutoComplete, Button } from 'antd'
 import styled from 'styled-components'
+
+const Input = styled(AutoComplete)`
+  width: 100%;
+  margin-right: 10px;
+`
 
 const SearchContainer = styled.div`
   padding: 10px;
-  width: 900px;
   display: flex;
+  margin: 0 auto;
+  width: 100%;
 `
 
 interface ISearchProps {
@@ -16,21 +24,37 @@ interface ISearchProps {
 
 interface ISearchState {
   query: string
+  suggestions: string[]
+}
+
+function throttled(delay: number, fn: any) {
+  let lastCall = 0
+  return (...args: any[]) => {
+    const now = new Date().getTime()
+    if (now - lastCall < delay) {
+      return
+    }
+    lastCall = now
+    return fn(...args)
+  }
 }
 
 export class Search extends React.Component<ISearchProps, ISearchState> {
   public readonly state: ISearchState
+  public getSuggestionsThrottled: () => {}
 
   constructor(props: ISearchProps) {
     super(props)
     this.state = {
       query: '',
+      suggestions: [],
     }
+
+    this.getSuggestionsThrottled = throttled(200, this.getSuggestions)
   }
 
-  public handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value
-    this.setState(prevState => ({ ...prevState, query }))
+  public handleChange = (query: any) => {
+    this.setState(prevState => ({ ...prevState, query }), this.getSuggestions)
   }
 
   public handleSearchButtonPress = () => {
@@ -40,12 +64,45 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
     handleSubmit(query)
   }
 
-  public render() {
+  public getSuggestions = async () => {
     const { query } = this.state
+    if (query.length > 2) {
+      jsonp(
+        `https://cors.io/?http://autocompletecity.geobytes.com/AutoCompleteCity?sort=size&template=<geobytes%20city>,%20<geobytes%20country>&q=${
+          this.state.query
+        }`,
+        undefined,
+        (err: Error | null, data: string[]) => {
+          if (err) {
+            return
+          }
+          if (data && data[0].length === 0) {
+            this.setState(prevState => ({ ...prevState, suggestions: [] }))
+            return
+          }
+          const suggestions = [
+            ...new Set(data.length > 10 ? data.slice(0, 10) : data),
+          ]
+          this.setState(prevState => ({
+            ...prevState,
+            suggestions,
+          }))
+        }
+      )
+    }
+  }
+
+  public render() {
+    const { query, suggestions } = this.state
     const { loading } = this.props
     return (
       <SearchContainer>
-        <Input type="text" value={query} onChange={this.handleChange} />
+        <Input
+          placeholder="New York, US"
+          dataSource={suggestions}
+          value={query}
+          onChange={this.handleChange}
+        />
         <Button
           disabled={loading}
           type="primary"

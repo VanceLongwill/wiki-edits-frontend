@@ -3,6 +3,8 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { Store } from 'redux'
 
+import { notification } from 'antd'
+
 import ForecastList from '../src/components/ForecastList'
 import PageContainer from '../src/components/PageContainer'
 import Search from '../src/components/Search'
@@ -32,7 +34,7 @@ class App extends React.Component<IAppProps> {
       const result = await getForecastByCity('London')
       store.dispatch(
         fetchForecastSuccess({
-          displayName: result.data.city.name,
+          displayName: `${result.data.city.name}, ${result.data.city.country}`,
           list: filterForecastsNext24Hours(result.data.list),
         })
       )
@@ -40,9 +42,23 @@ class App extends React.Component<IAppProps> {
   }
 
   public render() {
-    const { loading, handleFetchForecast, locations } = this.props
+    const {
+      loading,
+      handleFetchForecast,
+      locations,
+      error,
+      errorMsg,
+    } = this.props
+
+    if (error && !loading) {
+      notification.error({
+        description: errorMsg,
+        message: 'Oops something went wrong',
+      })
+    }
+
     return (
-      <PageContainer>
+      <>
         <Head>
           <title>Weather App</title>
           <meta
@@ -51,10 +67,12 @@ class App extends React.Component<IAppProps> {
             key="viewport"
           />
         </Head>
-        <h1>24 hours weather forecast</h1>
-        <Search loading={loading} handleSubmit={handleFetchForecast} />
-        <ForecastList locations={locations} />
-      </PageContainer>
+        <PageContainer>
+          <h1>24 hours weather forecast</h1>
+          <Search loading={loading} handleSubmit={handleFetchForecast} />
+          <ForecastList loading={loading} locations={locations} />
+        </PageContainer>
+      </>
     )
   }
 }

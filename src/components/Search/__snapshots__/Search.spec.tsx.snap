@@ -2,10 +2,10 @@
 
 exports[`Search should match snapshot 1`] = `
 <Search__SearchContainer>
-  <Input
-    disabled={false}
+  <Search__Input
+    dataSource={Array []}
     onChange={[Function]}
-    type="text"
+    placeholder="New York, US"
     value=""
   />
   <Button
