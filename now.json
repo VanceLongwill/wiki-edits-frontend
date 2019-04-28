@@ -1,3 +1,5 @@
 {
-  "name": "weather-app"
+  "name": "weather-app",
+  "version": 2,
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
 }
