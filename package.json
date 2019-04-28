@@ -1,7 +1,7 @@
 {
-  "name": "next-js-react-typescript-starter",
+  "name": "WeatherApp",
   "version": "1.0.0",
-  "description": "An example notes app built with Typescript, Next.JS & React",
+  "description": "An example weather app built with Typescript, Next.JS & React",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -42,7 +42,7 @@
     "React",
     "Redux",
     "SSR",
-    "Notes"
+    "Weather"
   ],
   "author": "Vance Longwill <vancelongwill@gmail.com>",
   "license": "MIT",
