@@ -75,3 +75,5 @@ All files                 |    90.32 |    78.57 |    82.61 |    91.53 |         
 - `npm run build` - build a production bundle
 - `npm run start` - start a production server
 - `npm run dev` - start the development server with HMR
+- `npm run export` - build a static render of the app
+- `npm run deploy` - build a static render of the app and deploy it to github pages
