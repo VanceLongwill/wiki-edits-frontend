@@ -2,11 +2,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  margin: 50px auto;
+  margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 24px;
-  width: 900px;
   background: #fefefe;
   * {
     box-sizing: border-box;
@@ -21,10 +20,6 @@ const Wrapper = styled.section`
   }
 `
 
-interface IPageContainerProps {
-  children?: React.ReactNode
-}
-
-export function PageContainer(props: IPageContainerProps) {
+export const PageContainer: React.FunctionComponent = props => {
   return <Wrapper>{props.children}</Wrapper>
 }

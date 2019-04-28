@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import { forecastReducer } from './forecastReducer'
+import { netChangeReducer } from './netChangeReducer'
 
 export default combineReducers({
-  forecast: forecastReducer,
+  netChange: netChangeReducer,
 })

@@ -1,5 +1,5 @@
 {
-  "name": "WeatherApp",
+  "name": "hatnote-historical-frontend",
   "version": "1.0.0",
   "description": "An example weather app built with Typescript, Next.JS & React",
   "main": "index.js",
@@ -9,16 +9,16 @@
     "export": "npm run build && next export && touch ./out/.nojekyll",
     "deploy": "rm -rf node_modules/.cache && npm run export && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages",
     "start": "next start",
-    "test": "npx jest",
+    "test": "jest",
     "test:watch": "npx jest --watch",
     "test:coverage": "npx jest --coverage",
-    "lint": "npx tslint -c tslint.json './{pages,src}/**/*.ts{,x}' --project .",
+    "lint": "tslint -c tslint.json './{pages,src}/**/*.ts{,x}' --project .",
     "lint:fix": "npm run lint -- --fix",
-    "lint:css": "npx stylelint './{pages,src}/**/*.ts{,x}'",
+    "lint:css": "stylelint './{pages,src}/**/*.ts{,x}'",
     "format": "npm run lint:fix && npx prettier --write './**/*.{t,j}s{,x}'",
-    "types": "npx tsc --noEmit",
+    "types": "tsc --noEmit",
     "storybook": "start-storybook -p 6006 -c .storybook",
-    "tslint-check": "npx tslint-config-prettier-check ./tslint.json"
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "husky": {
     "hooks": {
@@ -49,10 +49,11 @@
   "author": "Vance Longwill <vancelongwill@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@nivo/bar": "^0.59.2",
     "@zeit/next-css": "^0.2.1-canary.4",
     "@zeit/next-typescript": "^1.1.1",
     "antd": "^3.16.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "jsonp": "^0.2.1",
     "next": "^8.0.4",
     "next-redux-saga": "^4.0.1",

@@ -1,24 +1,15 @@
 import axios from 'axios'
-import { IApiResponse, IForecast } from '../types'
+import { IApiResponse } from '../types'
 
 // NB: in production API_KEY should be kept out of the codebase using a .env file or env variable
-const API_KEY = 'a73e8c027d85e30aef330275e41149ce'
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast'
+const BASE_URL = 'http://localhost:8080'
 
-export function getForecastByCity(name: string, countryCode: string = '') {
+export function getNetChange(langCode: string, from: number, to: number) {
   const params = {
-    appid: API_KEY,
-    q: countryCode ? `${name},${countryCode}` : name,
-    units: 'metric',
+    langCode,
+    // tslint:disable-next-line: object-literal-sort-keys
+    from,
+    to,
   }
-  return axios.get<IApiResponse>(`${BASE_URL}`, { params })
-}
-
-export function filterForecastsNext24Hours(
-  data: IApiResponse['list']
-): IForecast['list'] {
-  const comparisonDate = new Date()
-  comparisonDate.setDate(comparisonDate.getDate() + 1) // set date to same time tomorrow i.e. next 24 hours
-  const tomorrow = Math.floor(comparisonDate.getTime() / 1000) // get unix timestamp to compare
-  return data.filter(item => item.dt <= tomorrow)
+  return axios.get<IApiResponse>(`${BASE_URL}/edits`, { params })
 }

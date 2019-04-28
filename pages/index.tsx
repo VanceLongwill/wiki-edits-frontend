@@ -1,25 +1,43 @@
-import Head from 'next/head'
 import * as React from 'react'
+
+import Head from 'next/head'
 import { connect } from 'react-redux'
 import { Store } from 'redux'
+import styled from 'styled-components'
 
-import { notification } from 'antd'
-
-import ForecastList from '../src/components/ForecastList'
+import EditsChart from '../src/components/EditsChart'
 import PageContainer from '../src/components/PageContainer'
-import Search from '../src/components/Search'
 
-import { fetchForecast, fetchForecastSuccess } from '../src/actions'
-import { IForecastState, IState } from '../src/types'
-import { filterForecastsNext24Hours, getForecastByCity } from '../src/utils/api'
+import {
+  fetchNetChange,
+  fetchNetChangeFail,
+  fetchNetChangeSuccess,
+  periodicallyFetchNetChange,
+} from '../src/actions'
+import { INetChange, INetChangeState, IState } from '../src/types'
+import * as api from '../src/utils/api'
+import { dateToUnix } from '../src/utils/time'
 
 interface IAppProps {
-  error: IForecastState['error']
-  errorMsg: IForecastState['errorMsg']
-  loading: IForecastState['loading']
-  locations: IForecastState['locations']
-  handleFetchForecast: (query: string) => {}
+  netChange: INetChangeState
+  handleFetchNetChange: typeof fetchNetChange
+  handlePeriodicallyFetchNetChange: typeof periodicallyFetchNetChange
 }
+
+const INTERVAL_SECONDS = 10
+const BARS_PER_GRAPH = 10
+const LANG_CODES = ['en', 'de']
+
+const ChartWrapper = styled.div`
+  display: block;
+  height: 400px;
+  width: 100%;
+`
+
+const ChartsContainer = styled.div`
+  display: flex;
+  width: 100%;
+`
 
 class App extends React.Component<IAppProps> {
   public static async getInitialProps({
@@ -30,37 +48,93 @@ class App extends React.Component<IAppProps> {
     isServer: boolean
   }) {
     if (isServer) {
-      // @TODO: get initial forecast based on req geolocation
-      const result = await getForecastByCity('London')
-      store.dispatch(
-        fetchForecastSuccess({
-          displayName: `${result.data.city.name}, ${result.data.city.country}`,
-          list: filterForecastsNext24Hours(result.data.list),
-        })
+      const dateNow = new Date()
+
+      const allReqs: Array<Promise<void>> = []
+      await Promise.all(
+        LANG_CODES.reduce((accReqs, langCode) => {
+          const reqs: Array<Promise<void>> = Array(BARS_PER_GRAPH)
+          for (let i = 1; i < BARS_PER_GRAPH + 1; i++) {
+            const from = dateToUnix(
+              new Date(dateNow.getTime() - i * INTERVAL_SECONDS * 1000)
+            )
+            const to = dateToUnix(dateNow)
+            store.dispatch(fetchNetChange(langCode, from, to))
+            const req = api
+              .getNetChange(langCode, from, to)
+              // tslint:disable-next-line: no-console
+              .catch(e => console.log(e))
+              .then(result => {
+                if (!result) return
+                if (!result.data.netChange) {
+                  if (result.data.message) {
+                    store.dispatch(
+                      fetchNetChangeFail(
+                        langCode,
+                        from,
+                        to,
+                        result.data.message
+                      )
+                    )
+                  }
+                  return
+                }
+                store.dispatch(
+                  fetchNetChangeSuccess(
+                    langCode,
+                    from,
+                    to,
+                    result.data.netChange
+                  )
+                )
+              })
+            reqs.push(req)
+          }
+          return accReqs.concat(reqs)
+        }, allReqs)
       )
     }
   }
 
-  public render() {
-    const {
-      loading,
-      handleFetchForecast,
-      locations,
-      error,
-      errorMsg,
-    } = this.props
+  private intervals: number[] = []
 
-    if (error && !loading) {
-      notification.error({
-        description: errorMsg,
-        message: 'Oops something went wrong',
-      })
+  public fetchNetChangeForCurrentWindow(langCode: string): () => void {
+    return () => {
+      const dateNow = new Date()
+      const from = dateToUnix(
+        new Date(dateNow.getTime() - INTERVAL_SECONDS * 1000)
+      )
+      const to = dateToUnix(dateNow)
+      this.props.handleFetchNetChange(langCode, from, to)
     }
+  }
+
+  public componentDidMount() {
+    this.intervals = LANG_CODES.map(langCode =>
+      setInterval(
+        this.fetchNetChangeForCurrentWindow(langCode),
+        INTERVAL_SECONDS * 1000
+      )
+    )
+  }
+
+  public componentWillUnmount() {
+    this.intervals.forEach(handle => {
+      clearInterval(handle)
+    })
+  }
+
+  public getLastXIntervals(x: number, arr: INetChange[]) {
+    return arr.slice(Math.max(arr.length - x, 1))
+  }
+
+  public render() {
+    const { netChange } = this.props
 
     return (
       <>
         <Head>
-          <title>Weather App</title>
+          <title>Wiki Edits</title>
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
@@ -68,9 +142,20 @@ class App extends React.Component<IAppProps> {
           />
         </Head>
         <PageContainer>
-          <h1>24 hours weather forecast</h1>
-          <Search loading={loading} handleSubmit={handleFetchForecast} />
-          <ForecastList loading={loading} locations={locations} />
+          <h1>Wiki Edits</h1>
+          <ChartsContainer>
+            {LANG_CODES.map(langCode => (
+              <ChartWrapper key={langCode}>
+                <h2>{langCode}</h2>
+                <EditsChart
+                  data={this.getLastXIntervals(
+                    10,
+                    Object.values(netChange[langCode])
+                  )}
+                />
+              </ChartWrapper>
+            ))}
+          </ChartsContainer>
         </PageContainer>
       </>
     )
@@ -79,15 +164,13 @@ class App extends React.Component<IAppProps> {
 
 function mapStateToProps(state: IState) {
   return {
-    error: state.forecast.error,
-    errorMsg: state.forecast.errorMsg,
-    loading: state.forecast.loading,
-    locations: state.forecast.locations,
+    netChange: state.netChange,
   }
 }
 
 const actionCreators = {
-  handleFetchForecast: fetchForecast,
+  handleFetchNetChange: fetchNetChange,
+  handlePeriodicallyFetchNetChange: periodicallyFetchNetChange,
 }
 
 export default connect(
