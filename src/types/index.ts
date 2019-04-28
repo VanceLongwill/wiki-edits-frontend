@@ -61,7 +61,7 @@ export interface IWind {
   deg: number
 }
 export interface IRain {
-  '3h': number
+  '3h'?: number
 }
 export interface ISys {
   pod: string

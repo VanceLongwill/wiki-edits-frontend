@@ -8,7 +8,7 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5/forecast'
 export function getForecastByCity(name: string, countryCode: string = '') {
   const params = {
     appid: API_KEY,
-    q: countryCode ? [name, countryCode] : name,
+    q: countryCode ? `${name},${countryCode}` : name,
     units: 'metric',
   }
   return axios.get<IApiResponse>(`${BASE_URL}`, { params })
