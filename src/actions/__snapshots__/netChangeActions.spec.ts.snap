@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`netChangeActions action creators should match snapshot 1`] = `
+Object {
+  "payload": Object {
+    "from": 123233222,
+    "langCode": "en",
+    "to": 123123123,
+  },
+  "type": "FETCH_NET_CHANGE",
+}
+`;
+
+exports[`netChangeActions action creators should match snapshot 2`] = `
+Object {
+  "payload": Object {
+    "changeInBytes": 123123,
+    "from": 121113222,
+    "langCode": "en",
+    "to": 111123123,
+  },
+  "type": "FETCH_NET_CHANGE_SUCCESS",
+}
+`;
+
+exports[`netChangeActions action creators should match snapshot 3`] = `
+Object {
+  "payload": Object {
+    "error": "some error",
+    "from": 123233782,
+    "langCode": "en",
+    "to": 625123123,
+  },
+  "type": "FETCH_NET_CHANGE_FAIL",
+}
+`;

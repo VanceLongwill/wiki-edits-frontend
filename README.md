@@ -1,16 +1,15 @@
-### Weather App :sunny:
-
-> Live demo at [weather-app.vancelongwill.now.sh](https://weather-app.vancelongwill.now.sh)
+### Wikipedia Edit Tracker using Hatnote API data
 
 #### Features:
 
 ##### Stack :computer:
 
-- [Next.js](https://nextjs.org) Node/React framework supporting SSR (the first row in the ForecastList table is server-side rendered)
+- [Next.js](https://nextjs.org) Node/React framework supporting SSR (The bar charts are populated and rendered server side, then updated on the client)
 - [Zeit now]() for serverless deployment
 - [React]() for a view library
 - [Antd]() design/ui library for high quality components (NB: [babel-plugin-import]() used to reduce bundle size by importing css as required)
 - [Styled-components]() CSS-in-JS solution for easily extending component based styles
+- [Nivo](https://github.com/plouc/nivo) for the responsive isomorphic bar chart component
 
 ##### Code Quality :microscope:
 
@@ -19,8 +18,6 @@
 - Code formatting via [prettier]() to ensure a consistent style
 - Enforces the javascript standard code style [standardjs](https://standardjs.com)
 - [Husky]() & [lint-staged]() powered pre-commit hook to prevent non-compliant commits entering the codebase
-- [Semantic commit messages](https://seesparkbox.com/foundry/semantic_commit_messages) making the git commit history a readable changelog
-- HTML structuring best practices
 
 ##### Testing :white_check_mark:
 
@@ -32,30 +29,24 @@
 
 ###### Coverage Report
 
-File                      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
---------------------------|----------|----------|----------|----------|-------------------|
-All files                 |    90.32 |    78.57 |    82.61 |    91.53 |                   |
- __test__                 |      100 |      100 |      100 |      100 |                   |
-  stateStub.ts            |      100 |      100 |      100 |      100 |                   |
- actions                  |      100 |      100 |      100 |      100 |                   |
-  forecastActions.ts      |      100 |      100 |      100 |      100 |                   |
-  index.ts                |        0 |        0 |        0 |        0 |                   |
- components/ForecastItem  |      100 |      100 |      100 |      100 |                   |
-  ForecastItem.tsx        |      100 |      100 |      100 |      100 |                   |
-  index.tsx               |        0 |        0 |        0 |        0 |                   |
- components/ForecastList  |      100 |      100 |      100 |      100 |                   |
-  ForecastList.tsx        |      100 |      100 |      100 |      100 |                   |
- components/PageContainer |      100 |      100 |      100 |      100 |                   |
-  PageContainer.tsx       |      100 |      100 |      100 |      100 |                   |
- components/Search        |    78.57 |      100 |    66.67 |    83.33 |                   |
-  Search.tsx              |    78.57 |      100 |    66.67 |    83.33 |             32,33 |
- reducers                 |      100 |      100 |      100 |      100 |                   |
-  forecastReducer.ts      |      100 |      100 |      100 |      100 |                   |
- sagas                    |     87.5 |      100 |       50 |     87.5 |                   |
-  forecastSagas.ts        |     87.5 |      100 |       50 |     87.5 |                33 |
- utils                    |    77.78 |        0 |    66.67 |       75 |                   |
-  api.ts                  |    77.78 |        0 |    66.67 |       75 |              9,14 |
-
+| File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s  |
+| ------------------------ | ------- | -------- | ------- | ------- | ------------------ |
+| All files                | 70.21   | 77.78    | 46.67   | 70.21   |                    |
+| **test**                 | 100     | 100      | 100     | 100     |                    |
+| stateStub.ts             | 100     | 100      | 100     | 100     |                    |
+| actions                  | 100     | 100      | 100     | 100     |                    |
+| index.ts                 | 0       | 0        | 0       | 0       |                    |
+| netChangeActions.ts      | 100     | 100      | 100     | 100     |                    |
+| components/EditsChart    | 50      | 100      | 33.33   | 50      |                    |
+| EditsChart.tsx           | 50      | 100      | 33.33   | 50      | 24,27              |
+| components/PageContainer | 100     | 100      | 100     | 100     |                    |
+| PageContainer.tsx        | 100     | 100      | 100     | 100     |                    |
+| reducers                 | 100     | 100      | 100     | 100     |                    |
+| netChangeReducer.ts      | 100     | 100      | 100     | 100     |                    |
+| sagas                    | 50      | 100      | 25      | 50      |                    |
+| netChangeSagas.ts        | 50      | 100      | 25      | 50      | ... 41,44,45,46,51 |
+| utils                    | 0       | 0        | 0       | 0       |                    |
+| time.ts                  | 0       | 0        | 0       | 0       | 2,6,10,11          |
 
 ### Setup
 

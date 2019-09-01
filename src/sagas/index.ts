@@ -1,13 +1,9 @@
 import { all } from 'redux-saga/effects'
-import {
-  watchNetChange,
-  watchPeriodicallyFetchNetChange,
-} from './netChangeSagas'
+import { watchNetChange } from './netChangeSagas'
 
 function* rootSaga() {
   yield all([
     watchNetChange(),
-    watchPeriodicallyFetchNetChange(),
     // more sagas here
   ])
 }

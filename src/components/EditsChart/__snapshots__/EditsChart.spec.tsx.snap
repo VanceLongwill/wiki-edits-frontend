@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditsChart it should match snapshot 1`] = `
+<ResponsiveBar
+  axisBottom={
+    Object {
+      "format": [Function],
+      "legend": "Time period",
+      "legendOffset": 48,
+      "legendPosition": "middle",
+      "tickPadding": 10,
+      "tickRotation": 0,
+      "tickSize": 5,
+    }
+  }
+  axisLeft={
+    Object {
+      "legend": "Net change in bytes",
+      "legendOffset": -60,
+      "legendPosition": "middle",
+      "tickPadding": 10,
+      "tickRotation": 0,
+      "tickSize": 5,
+    }
+  }
+  colors={
+    Object {
+      "scheme": "nivo",
+    }
+  }
+  data={
+    Array [
+      Object {
+        "changeInBytes": 3643,
+        "error": "",
+        "from": 1567369442,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 5434,
+        "error": "",
+        "from": 1567369432,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 15864,
+        "error": "",
+        "from": 1567369422,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 22538,
+        "error": "",
+        "from": 1567369412,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 32982,
+        "error": "",
+        "from": 1567369402,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 32560,
+        "error": "",
+        "from": 1567369392,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 177852,
+        "error": "",
+        "from": 1567369382,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 178342,
+        "error": "",
+        "from": 1567369372,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 179301,
+        "error": "",
+        "from": 1567369362,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": 179598,
+        "error": "",
+        "from": 1567369352,
+        "loading": false,
+        "to": 1567369452,
+      },
+      Object {
+        "changeInBytes": -7,
+        "error": "",
+        "from": 1567369454,
+        "loading": false,
+        "to": 1567369464,
+      },
+      Object {
+        "changeInBytes": 951,
+        "error": "",
+        "from": 1567369464,
+        "loading": false,
+        "to": 1567369474,
+      },
+      Object {
+        "changeInBytes": 1347,
+        "error": "",
+        "from": 1567369474,
+        "loading": false,
+        "to": 1567369484,
+      },
+      Object {
+        "changeInBytes": 3795,
+        "error": "",
+        "from": 1567369492,
+        "loading": false,
+        "to": 1567369502,
+      },
+      Object {
+        "changeInBytes": -914,
+        "error": "",
+        "from": 1567369502,
+        "loading": false,
+        "to": 1567369512,
+      },
+      Object {
+        "changeInBytes": 266,
+        "error": "",
+        "from": 1567369512,
+        "loading": false,
+        "to": 1567369522,
+      },
+      Object {
+        "changeInBytes": 988,
+        "error": "",
+        "from": 1567369522,
+        "loading": false,
+        "to": 1567369532,
+      },
+      Object {
+        "changeInBytes": 6549,
+        "error": "",
+        "from": 1567369532,
+        "loading": false,
+        "to": 1567369542,
+      },
+      Object {
+        "changeInBytes": 1832,
+        "error": "",
+        "from": 1567369542,
+        "loading": false,
+        "to": 1567369552,
+      },
+      Object {
+        "changeInBytes": -1942,
+        "error": "",
+        "from": 1567369552,
+        "loading": false,
+        "to": 1567369562,
+      },
+      Object {
+        "changeInBytes": 8699,
+        "error": "",
+        "from": 1567369562,
+        "loading": false,
+        "to": 1567369572,
+      },
+      Object {
+        "changeInBytes": 3718,
+        "error": "",
+        "from": 1567369572,
+        "loading": false,
+        "to": 1567369582,
+      },
+      Object {
+        "changeInBytes": 522,
+        "error": "",
+        "from": 1567369582,
+        "loading": false,
+        "to": 1567369592,
+      },
+    ]
+  }
+  indexBy="from"
+  keys={
+    Array [
+      "changeInBytes",
+    ]
+  }
+  margin={
+    Object {
+      "bottom": 60,
+      "left": 80,
+      "right": 80,
+      "top": 60,
+    }
+  }
+  padding={0.2}
+  tooltip={[Function]}
+/>
+`;

@@ -1,3 +1,5 @@
+import { LangCode } from '../types'
+
 export const FETCH_NET_CHANGE = 'FETCH_NET_CHANGE'
 export const FETCH_NET_CHANGE_SUCCESS = 'FETCH_NET_CHANGE_SUCCESS'
 export const FETCH_NET_CHANGE_FAIL = 'FETCH_NET_CHANGE_FAIL'
@@ -8,7 +10,7 @@ export interface IFetchNetChange {
   payload: {
     from: number
     to: number
-    langCode: string
+    langCode: LangCode
   }
 }
 
@@ -17,7 +19,7 @@ export interface IFetchNetChangeFail {
   payload: {
     from: number
     to: number
-    langCode: string
+    langCode: LangCode
     error: string
   }
 }
@@ -27,28 +29,19 @@ export interface IFetchNetChangeSuccess {
   payload: {
     from: number
     to: number
-    langCode: string
+    langCode: LangCode
     changeInBytes: number
   }
 }
 
-export interface IPeriodicallyFetchNetChange {
-  type: typeof PERIODICALLY_FETCH_NET_CHANGE
-  payload: {
-    langCode: string
-    intervalMs: number
-  }
-}
-
 export function fetchNetChange(
-  langCode: string,
+  langCode: LangCode,
   from: number,
   to: number
 ): IFetchNetChange {
   return {
     payload: {
       langCode,
-      // tslint:disable-next-line: object-literal-sort-keys
       from,
       to,
     },
@@ -57,7 +50,7 @@ export function fetchNetChange(
 }
 
 export function fetchNetChangeFail(
-  langCode: string,
+  langCode: LangCode,
   from: number,
   to: number,
   error: string
@@ -69,7 +62,7 @@ export function fetchNetChangeFail(
 }
 
 export function fetchNetChangeSuccess(
-  langCode: string,
+  langCode: LangCode,
   from: number,
   to: number,
   changeInBytes: number
@@ -80,18 +73,7 @@ export function fetchNetChangeSuccess(
   }
 }
 
-export function periodicallyFetchNetChange(
-  langCode: string,
-  intervalMs: number
-): IPeriodicallyFetchNetChange {
-  return {
-    payload: { langCode, intervalMs },
-    type: PERIODICALLY_FETCH_NET_CHANGE,
-  }
-}
-
 export type NetChangeActions =
   | IFetchNetChangeFail
   | IFetchNetChangeSuccess
   | IFetchNetChange
-  | IPeriodicallyFetchNetChange

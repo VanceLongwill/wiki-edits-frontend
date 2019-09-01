@@ -7,7 +7,6 @@ const BASE_URL = 'http://localhost:8080'
 export function getNetChange(langCode: string, from: number, to: number) {
   const params = {
     langCode,
-    // tslint:disable-next-line: object-literal-sort-keys
     from,
     to,
   }

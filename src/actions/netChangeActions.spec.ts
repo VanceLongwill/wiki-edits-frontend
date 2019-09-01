@@ -1,14 +1,13 @@
-// import {
-//   fetchForecast,
-//   fetchForecastFail,
-//   fetchForecastSuccess,
-// } from './netChangeActions'
-// describe('forecast actions', () => {
-//   it('action creators should match snapshot', () => {
-//     expect(fetchForecast('London')).toMatchSnapshot()
-//     expect(fetchForecastFail('some error')).toMatchSnapshot()
-//     expect(
-//       fetchForecastSuccess({ displayName: 'something' } as any)
-//     ).toMatchSnapshot()
-//   })
-// })
+import * as actions from './netChangeActions'
+
+describe('netChangeActions', () => {
+  it('action creators should match snapshot', () => {
+    expect(actions.fetchNetChange('en', 123233222, 123123123)).toMatchSnapshot()
+    expect(
+      actions.fetchNetChangeSuccess('en', 121113222, 111123123, 123123)
+    ).toMatchSnapshot()
+    expect(
+      actions.fetchNetChangeFail('en', 123233782, 625123123, 'some error')
+    ).toMatchSnapshot()
+  })
+})

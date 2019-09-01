@@ -1,7 +1,7 @@
 {
   "name": "hatnote-historical-frontend",
   "version": "1.0.0",
-  "description": "An example weather app built with Typescript, Next.JS & React",
+  "description": "An example app built with Typescript, Next.JS & React",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -34,7 +34,6 @@
       "npx tslint -c tslint.json",
       "npx stylelint",
       "npx prettier --write",
-      "npm run test",
       "git add"
     ]
   },
@@ -43,8 +42,7 @@
     "Next.js",
     "React",
     "Redux",
-    "SSR",
-    "Weather"
+    "SSR"
   ],
   "author": "Vance Longwill <vancelongwill@gmail.com>",
   "license": "MIT",

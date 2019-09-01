@@ -1,3 +1,6 @@
+import { LANG_CODES } from '../config/constants'
+
+export type LangCode = typeof LANG_CODES[number]
 /*
  * Redux state
  */
@@ -5,8 +8,8 @@
 export interface IState {
   readonly netChange: INetChangeState
 }
-export interface INetChangeState {
-  [langCode: string]: {
+export type INetChangeState = {
+  [langCode in LangCode]: {
     // `timestamps` is both the `to` and `from` timestamps concatenated
     [timestamps: string]: INetChange
   }

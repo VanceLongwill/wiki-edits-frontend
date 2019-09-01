@@ -12,21 +12,20 @@ import {
   fetchNetChange,
   fetchNetChangeFail,
   fetchNetChangeSuccess,
-  periodicallyFetchNetChange,
 } from '../src/actions'
-import { INetChange, INetChangeState, IState } from '../src/types'
+import {
+  BARS_PER_GRAPH,
+  INTERVAL_SECONDS,
+  LANG_CODES,
+} from '../src/config/constants'
+import { INetChange, INetChangeState, IState, LangCode } from '../src/types'
 import * as api from '../src/utils/api'
 import { dateToUnix } from '../src/utils/time'
 
 interface IAppProps {
   netChange: INetChangeState
   handleFetchNetChange: typeof fetchNetChange
-  handlePeriodicallyFetchNetChange: typeof periodicallyFetchNetChange
 }
-
-const INTERVAL_SECONDS = 10
-const BARS_PER_GRAPH = 10
-const LANG_CODES = ['en', 'de']
 
 const ChartWrapper = styled.div`
   display: block;
@@ -98,7 +97,7 @@ class App extends React.Component<IAppProps> {
 
   private intervals: number[] = []
 
-  public fetchNetChangeForCurrentWindow(langCode: string): () => void {
+  public fetchNetChangeForCurrentWindow(langCode: LangCode): () => void {
     return () => {
       const dateNow = new Date()
       const from = dateToUnix(
@@ -170,7 +169,6 @@ function mapStateToProps(state: IState) {
 
 const actionCreators = {
   handleFetchNetChange: fetchNetChange,
-  handlePeriodicallyFetchNetChange: periodicallyFetchNetChange,
 }
 
 export default connect(

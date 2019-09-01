@@ -8,7 +8,6 @@ import { INetChangeState } from '../types'
 
 export const defaultState: INetChangeState = {
   en: {},
-  // tslint:disable-next-line: object-literal-sort-keys
   de: {},
 }
 
@@ -29,7 +28,6 @@ export function netChangeReducer(
             error: '',
             loading: true,
             to: action.payload.to,
-            // tslint:disable-next-line: object-literal-sort-keys
             from: action.payload.from,
           },
         },
@@ -63,7 +61,6 @@ export function netChangeReducer(
             ...state[langCode][timestamps],
             error: '',
             loading: false,
-            // tslint:disable-next-line: object-literal-sort-keys
             changeInBytes: action.payload.changeInBytes,
           },
         },
