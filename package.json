@@ -51,7 +51,7 @@
     "@zeit/next-css": "^0.2.1-canary.4",
     "@zeit/next-typescript": "^1.1.1",
     "antd": "^3.16.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "jsonp": "^0.2.1",
     "next": "^8.0.4",
     "next-redux-saga": "^4.0.1",
